@@ -42,7 +42,7 @@ rect_blue = pygame.Rect(156, 60, LARGEUR_REC, HAUTEUR_REC)
 rect_orange = pygame.Rect(156, 160, LARGEUR_REC, HAUTEUR_REC)
 rect_red = pygame.Rect(156, 260, LARGEUR_REC, HAUTEUR_REC)
 
-def afficher_elements():
+def afficher_elements_choice():
     fen.blit(fond, (0, 0))
     fen.blit(petit_joueur, (520, 150))
     fen.blit(petit_presentateur, (20, 150))
@@ -54,7 +54,7 @@ def afficher_elements():
     fen.blit(msg_hard, (280, 280))
     pygame.display.flip()
 
-def gerer_evenements():
+def gerer_evenements_choice():
     global etat_jeu
     continuer = True
     while continuer:
@@ -74,12 +74,12 @@ def gerer_evenements():
                     etat_jeu = "en_cours_hard"
                     print(" --> Hard")
                     print(etat_jeu)
-        afficher_elements()
+        afficher_elements_choice()
 
 def main():
     global etat_jeu
-    afficher_elements()
-    gerer_evenements()
+    afficher_elements_choice()
+    gerer_evenements_choice()
     pygame.quit()
 
 if __name__ == "__main__":

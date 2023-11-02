@@ -44,7 +44,7 @@ police = pygame.font.Font("police.ttf", 16)
 msg_replay = police.render("REPLAY", True, WHITE)
 
 # Affichage des éléments à l'écran
-def afficher_elements():
+def afficher_elements_win():
     fen.blit(fond, (0, 0))
     fen.blit(petit_joueur, (420, 20))
     fen.blit(petit_explo, (420, 140))
@@ -56,7 +56,7 @@ def afficher_elements():
     pygame.display.flip()
 
 # Gestion des événements et logique du jeu
-def gerer_evenements():
+def gerer_evenements_win():
     global etat_jeu
     continuer = True
     while continuer:
@@ -68,13 +68,13 @@ def gerer_evenements():
                     etat_jeu = "choix_difficultes"
                     print(" --> Replay")
                     print(etat_jeu)
-        afficher_elements()
+        afficher_elements_win()
 
 # Fonction principale
 def main():
     global etat_jeu
-    afficher_elements()
-    gerer_evenements()
+    afficher_elements_win()
+    gerer_evenements_win()
     pygame.quit()
 
 if __name__ == "__main__":

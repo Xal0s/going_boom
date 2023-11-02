@@ -37,7 +37,7 @@ petit_presentateur = petit_presentateur.convert_alpha()
 
 rect_orange = pygame.draw.rect(fen, ORANGE, [246, 40, LARGEUR_REC, HAUTEUR_REC])
 
-def afficher_elements():
+def afficher_elements_begin():
     fen.blit(fond, (0, 0))
     fen.blit(petit_joueur, (420, 20))
     fen.blit(petit_regles, (40, 140))
@@ -46,7 +46,7 @@ def afficher_elements():
     fen.blit(msg_clic, (255, 55))
     pygame.display.flip()
 
-def gerer_evenements():
+def gerer_evenements_begin():
     global etat_jeu
     continuer = True
     while continuer:
@@ -57,12 +57,12 @@ def gerer_evenements():
                 if rect_orange.collidepoint(event.pos):
                     etat_jeu = "choix_difficultes"
                     print(etat_jeu)
-        afficher_elements()
+        afficher_elements_begin()
 
 def main():
     global etat_jeu
-    afficher_elements()
-    gerer_evenements()
+    afficher_elements_begin()
+    gerer_evenements_begin()
     pygame.quit()
 
 if __name__ == "__main__":
