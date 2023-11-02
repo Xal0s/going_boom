@@ -50,6 +50,10 @@ joueur = pygame.image.load("joueur.png").convert()
 petit_joueur = pygame.transform.scale(joueur, (joueur.get_width() // 16, joueur.get_height() // 16))
 petit_joueur = petit_joueur.convert_alpha()
 
+homerdoh = pygame.image.load("doh.png").convert()
+petit_homerdoh = pygame.transform.scale(homerdoh, (homerdoh.get_width() // 1.7, homerdoh.get_height() // 1.7))
+petit_homerdoh = petit_homerdoh.convert()
+
 regles = pygame.image.load("regles.png").convert()
 petit_regles = pygame.transform.scale(regles, (regles.get_width() // 1.6, regles.get_height() // 1.6))
 petit_regles = petit_regles.convert_alpha()
@@ -69,6 +73,13 @@ victory = pygame.image.load("victory.png").convert()
 petit_victory = pygame.transform.scale(victory, (victory.get_width() // 1.3, victory.get_height() // 1.3))
 petit_victory = petit_victory.convert_alpha()
 
+homerwinleft = pygame.image.load("winhl.png").convert()
+petit_homerwinleft = pygame.transform.scale(homerwinleft, (homerwinleft.get_width() // 1.2, homerwinleft.get_height() // 1.2))
+petit_homerwinleft = petit_homerwinleft.convert_alpha()
+homerwinright = pygame.image.load("winhr.png").convert()
+petit_homerwinright = pygame.transform.scale(homerwinright, (homerwinright.get_width() // 1.2, homerwinright.get_height() // 1.2))
+petit_homerwinright = petit_homerwinright.convert_alpha()
+
 explo = pygame.image.load("explosion.gif").convert()
 petit_explo = pygame.transform.scale(explo, (explo.get_width() // 5, explo.get_height() // 5))
 petit_explo = petit_explo.convert_alpha()
@@ -87,7 +98,7 @@ ETAT_WIN = "win"
 ETAT_GAME_OVER = "game_over"
 """
 # Démarrer l'état du jeu
-etat_jeu = ETAT_DEBUT
+etat_jeu = ETAT_WIN
 print (etat_jeu)
 continuer = True
 
@@ -100,16 +111,17 @@ def afficher_elements_begin():
 
 def afficher_elements_win():
     fen.blit(petit_joueur, (420, 20))
-    fen.blit(petit_explo, (420, 140))
+    fen.blit(petit_homerwinleft, (460, 140))
     fen.blit(petit_victory, (195, 140))
     fen.blit(petit_presentateur, (120, 20))
-    fen.blit(petit_explo, (50, 140))
+    fen.blit(petit_homerwinright, (20, 140))
     pygame.draw.rect(fen, ORANGE, rect_orange)
     fen.blit(msg_replay, (272, 57))
     
 def afficher_elements_game_over():
     fen.blit(petit_joueur, (420, 20))
     fen.blit(petit_explo, (420, 140))
+    fen.blit(petit_homerdoh, (250, 280))
     fen.blit(petit_game_over, (195, 140))
     fen.blit(petit_presentateur, (120, 20))
     fen.blit(petit_explo, (50, 140))
@@ -213,6 +225,7 @@ while continuer:
                 if rect_red_choice.collidepoint(event.pos):
                     etat_jeu = ETAT_EN_COURS_HARD
                     print (etat_jeu)
+                    
     elif etat_jeu == ETAT_EN_COURS_EASY :
         # Affichage joueur de la partie
         pass
