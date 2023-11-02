@@ -68,11 +68,21 @@ reponse = ""
 # Nos questions
 questions = [
     "Quelle est la capitale de la France ?",
-    "Quel est le plus grand océan du monde ?",
+    "Quel est le plus grand ocean du monde ?",
     "Qui a peint la Joconde ?",
+    "Quelle planète est la plus proche du soleil ?",
+    "Qui a écrit Romeo et Juliette ?",
+    "Combien de continents y a-t-il sur Terre ?",
+    "Quel est le plus grand mammifère terrestre ?",
+    "Quel est le pays le plus vaste du monde en termes de superficie ?",
+    "Quel est l'inventeur de l'ampoule electrique ?",
+    "Qui est l'auteur de la peinture La Nuit etoilée ?",
+    "Combien de côtés a un triangle ?",
+    "Quelle est la plus grande planète du systeme solaire ?",
+    "Quel est le nom de l'inventeur du téléphone ?"
 ]
 # Nos réponses
-reponses = ["Paris", "Océan Pacifique", "Leonard de Vinci"]
+reponses = ["Paris", "Ocean Pacifique", "Leonard de Vinci","Mercure","William Shakespeare","7","elephant d'afrique" ,"La Russie","Thomas Edison","Vincent van Gogh","3","Jupiter"," Alexander Graham Bell"]
 etat_reponse = None
 # Choix de la taille de caractère et la font du texte écrit dans l'interface
 font = pygame.font.Font("AAhaWow-2O1K8.ttf", 20)
