@@ -12,8 +12,8 @@ pygame.display.set_caption("Projet")
 fen.fill(COULEUR_FOND)
 fond = fond.convert()
 
-LARGEUR_REC = 120
-HAUTEUR_REC = 50
+LARGEUR_REC_BEGIN_WIN_OVER = 120
+HAUTEUR_REC_BEGIN_WIN_OVER = 50
 
 police = pygame.font.Font("police.ttf", 16)
 msg_replay = police.render("REPLAY", True, WHITE)
@@ -37,11 +37,10 @@ petit_presentateur = pygame.transform.scale(presentateur, (presentateur.get_widt
 petit_presentateur = petit_presentateur.convert_alpha()
 
 # Définition des rectangles
-rect_orange = pygame.Rect(246, 40, LARGEUR_REC, HAUTEUR_REC)
+rect_orange = pygame.Rect(246, 40, LARGEUR_REC_BEGIN_WIN_OVER, HAUTEUR_REC_BEGIN_WIN_OVER)
 
 # Affichage des éléments à l'écran
 def afficher_elements_game_over():
-    fen.blit(fond, (0, 0))
     fen.blit(petit_joueur, (420, 20))
     fen.blit(petit_explo, (420, 140))
     fen.blit(petit_game_over, (195, 140))
@@ -49,7 +48,7 @@ def afficher_elements_game_over():
     fen.blit(petit_explo, (50, 140))
     pygame.draw.rect(fen, ORANGE, rect_orange)
     fen.blit(msg_replay, (272, 57))
-    pygame.display.flip()
+
 
 # Gestion des événements et logique du jeu
 def gerer_evenements_game_over():
@@ -69,8 +68,11 @@ def gerer_evenements_game_over():
 # Fonction principale
 def main():
     global etat_jeu
+    fen.blit(fond, (0, 0))
     afficher_elements_game_over()
+    pygame.display.flip()
     gerer_evenements_game_over()
+    
     pygame.quit()
 
 if __name__ == "__main__":

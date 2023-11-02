@@ -14,11 +14,11 @@ pygame.display.set_caption("Projet")
 fen.fill(COULEUR_FOND)
 fond = fond.convert()
 
-LARGEUR_REC = 120
-HAUTEUR_REC = 50
+LARGEUR_REC_BEGIN_WIN_OVER = 120
+HAUTEUR_REC_BEGIN_WIN_OVER = 50
 
-police = pygame.font.Font("police.ttf", 16)
-msg_clic = police.render("Clique ici", True, WHITE)
+police_begin = pygame.font.Font("police.ttf", 16)
+msg_clic = police_begin.render("Clique ici", True, WHITE)
 
 joueur = pygame.image.load("joueur.png").convert()
 petit_joueur = pygame.transform.scale(joueur, (joueur.get_width() // 16, joueur.get_height() // 16))
@@ -35,14 +35,14 @@ presentateur.set_colorkey((0, 0, 0))
 petit_presentateur = pygame.transform.scale(presentateur, (presentateur.get_width() // 20, presentateur.get_height() // 20))
 petit_presentateur = petit_presentateur.convert_alpha()
 
-rect_orange = pygame.draw.rect(fen, ORANGE, [246, 40, LARGEUR_REC, HAUTEUR_REC])
+rect_orange = pygame.draw.rect(fen, ORANGE, [246, 40, LARGEUR_REC_BEGIN_WIN_OVER, HAUTEUR_REC_BEGIN_WIN_OVER])
 
 def afficher_elements_begin():
     fen.blit(fond, (0, 0))
     fen.blit(petit_joueur, (420, 20))
     fen.blit(petit_regles, (40, 140))
     fen.blit(petit_presentateur, (120, 20))
-    pygame.draw.rect(fen, ORANGE, [246, 40, LARGEUR_REC, HAUTEUR_REC])  # Dessin du rectangle
+    pygame.draw.rect(fen, ORANGE, [246, 40, LARGEUR_REC_BEGIN_WIN_OVER, HAUTEUR_REC_BEGIN_WIN_OVER])  # Dessin du rectangle
     fen.blit(msg_clic, (255, 55))
     pygame.display.flip()
 
@@ -61,6 +61,7 @@ def gerer_evenements_begin():
 
 def main():
     global etat_jeu
+    fen.blit(fond, (0, 0))
     afficher_elements_begin()
     gerer_evenements_begin()
     pygame.quit()

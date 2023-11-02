@@ -16,8 +16,8 @@ pygame.display.set_caption("Projet")
 fen.fill(COULEUR_FOND)
 fond = fond.convert()
 
-LARGEUR_REC = 300
-HAUTEUR_REC = 60
+LARGEUR_REC_CHOICE = 300
+HAUTEUR_REC_CHOICE = 60
 
 # Chargement et préparation des images
 joueur = pygame.image.load("joueur.png").convert()
@@ -30,29 +30,28 @@ petit_presentateur = pygame.transform.scale(presentateur, (presentateur.get_widt
 petit_presentateur = petit_presentateur.convert_alpha()
 
 # Textes pour les différentes difficultés
-police = pygame.font.Font("police.ttf", 20)
-msg_easy = police.render("Easy", True, WHITE)
-msg_medium = police.render("Medium", True, WHITE)
-msg_hard = police.render("Hard", True, WHITE)
+police_choice = pygame.font.Font("police.ttf", 20)
+msg_easy = police_choice.render("Easy", True, WHITE)
+msg_medium = police_choice.render("Medium", True, WHITE)
+msg_hard = police_choice.render("Hard", True, WHITE)
 
 etat_jeu = "choix_difficultes"
 
 # Initialisation des rectangles
-rect_blue = pygame.Rect(156, 60, LARGEUR_REC, HAUTEUR_REC)
-rect_orange = pygame.Rect(156, 160, LARGEUR_REC, HAUTEUR_REC)
-rect_red = pygame.Rect(156, 260, LARGEUR_REC, HAUTEUR_REC)
+rect_blue_choice = pygame.Rect(156, 60, LARGEUR_REC_CHOICE, HAUTEUR_REC_CHOICE)
+rect_orange_choice = pygame.Rect(156, 160, LARGEUR_REC_CHOICE, HAUTEUR_REC_CHOICE)
+rect_red_choice = pygame.Rect(156, 260, LARGEUR_REC_CHOICE, HAUTEUR_REC_CHOICE)
 
 def afficher_elements_choice():
-    fen.blit(fond, (0, 0))
     fen.blit(petit_joueur, (520, 150))
     fen.blit(petit_presentateur, (20, 150))
-    pygame.draw.rect(fen, BLUE, rect_blue)
-    pygame.draw.rect(fen, ORANGE, rect_orange)
-    pygame.draw.rect(fen, RED, rect_red)
+    pygame.draw.rect(fen, BLUE, rect_blue_choice)
+    pygame.draw.rect(fen, ORANGE, rect_orange_choice)
+    pygame.draw.rect(fen, RED, rect_red_choice)
     fen.blit(msg_easy, (280, 80))
     fen.blit(msg_medium, (270, 180))
     fen.blit(msg_hard, (280, 280))
-    pygame.display.flip()
+
 
 def gerer_evenements_choice():
     global etat_jeu
@@ -62,15 +61,15 @@ def gerer_evenements_choice():
             if event.type == pygame.QUIT:
                 continuer = False
             elif event.type == pygame.MOUSEBUTTONUP:
-                if rect_blue.collidepoint(event.pos):
-                    etat_jeu = "en_cours"
+                if rect_blue_choice.collidepoint(event.pos):
+                    etat_jeu = "en_cours_easy"
                     print(" --> Easy")
                     print(etat_jeu)
-                elif rect_orange.collidepoint(event.pos):
+                elif rect_orange_choice.collidepoint(event.pos):
                     etat_jeu = "en_cours_medium"
                     print(" --> Medium")
                     print(etat_jeu)
-                elif rect_red.collidepoint(event.pos):
+                elif rect_red_choice.collidepoint(event.pos):
                     etat_jeu = "en_cours_hard"
                     print(" --> Hard")
                     print(etat_jeu)
@@ -78,8 +77,11 @@ def gerer_evenements_choice():
 
 def main():
     global etat_jeu
+    fen.blit(fond, (0, 0))
     afficher_elements_choice()
+    pygame.display.flip()
     gerer_evenements_choice()
+    
     pygame.quit()
 
 if __name__ == "__main__":
