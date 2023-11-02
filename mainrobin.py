@@ -1,6 +1,6 @@
 # Fenêtre de jeu de Going bomb
-
 import pygame
+import going_boomV1
 
 # Super variable (début, choix_difficultes, en_cours, win, game_over) :
 ETAT_DEBUT = "debut"
@@ -186,6 +186,7 @@ while continuer:
             gerer_evenements_choice()
         if etat_jeu == ETAT_EN_COURS_EASY :
             # Affichage joueur de la partie
+            going_boomV1.going_boom_facile()
             pass
         if etat_jeu == ETAT_EN_COURS_MEDIUM :
             # Affichage joueur de la partie
