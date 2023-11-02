@@ -60,9 +60,19 @@ while continuer:
                     if reponse.lower() == reponses[question_index].lower():
                         #si c'est le cas, la variable etat_reponse devient bonne reponse
                         etat_reponse = "Bonne réponse"
+                        couleur = (0, 255, 0)
+                        message_surface = font.render(etat_reponse, True, (0, 255, 0))
+                        message_rect = message_surface.get_rect(center=(largeur // 2, hauteur // 2 + 60))
+                        fen.blit(message_surface, message_rect.topleft)
+                        pygame.time.delay(1000)
                     else:
                         #Sinon elle devient mauvaise reponse
                         etat_reponse = "Mauvaise réponse"
+                        message_surface = font.render(etat_reponse, True, (0, 255, 0))
+                        couleur = (255, 0, 0)
+                        message_rect = message_surface.get_rect(center=(largeur // 2, hauteur // 2 + 60))
+                        fen.blit(message_surface, message_rect.topleft)
+                        pygame.time.delay(1000)
                     # Réinitialiser la réponse
                     reponse = ""
                 #si l'entrée de l'utilisateur contient quelque chose
