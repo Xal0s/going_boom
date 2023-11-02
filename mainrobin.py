@@ -1,6 +1,6 @@
 # Fenêtre de jeu de Going bomb
+
 import pygame
-import going_boomV1
 
 # Super variable (début, choix_difficultes, en_cours, win, game_over) :
 ETAT_DEBUT = "debut"
@@ -88,7 +88,7 @@ ETAT_GAME_OVER = "game_over"
 """
 # Démarrer l'état du jeu
 etat_jeu = ETAT_DEBUT
-
+print (etat_jeu)
 continuer = True
 
 def afficher_elements_begin():
@@ -126,15 +126,14 @@ def afficher_elements_choice():
     fen.blit(msg_medium, (270, 180))
     fen.blit(msg_hard, (280, 280))
     
-def gerer_evenements_begin():
+"""def gerer_evenements_begin():
     global etat_jeu, continuer
     for event in pygame.event.get():
         if event.type == pygame.MOUSEBUTTONUP:
             if rect_orange.collidepoint(event.pos):
                 etat_jeu = "choix_difficultes"
                 return etat_jeu
-    
-       
+           
 def gerer_evenements_win():
     global etat_jeu, continuer
     for event in pygame.event.get():
@@ -142,8 +141,7 @@ def gerer_evenements_win():
             if rect_orange.collidepoint(event.pos):
                 etat_jeu = "choix_difficultes"
                 return etat_jeu
-    
-        
+          
 def gerer_evenements_game_over():
     global etat_jeu, continuer
     for event in pygame.event.get():
@@ -151,8 +149,7 @@ def gerer_evenements_game_over():
             if rect_orange.collidepoint(event.pos):
                 etat_jeu = "choix_difficultes"
                 return etat_jeu
-    
-              
+               
 def gerer_evenements_choice():
     global etat_jeu, continuer
     for event in pygame.event.get():
@@ -165,10 +162,8 @@ def gerer_evenements_choice():
                 return etat_jeu
             if rect_red_choice.collidepoint(event.pos):
                 etat_jeu = "en_cours_hard"
-                return etat_jeu
+                return etat_jeu"""
     
-    
-
 
 while continuer:
      
@@ -178,52 +173,70 @@ while continuer:
         # L'utilisateur veut-il fermer la fenêtre ?
         if event.type == pygame.QUIT:
             continuer = False
-            
-        if etat_jeu == ETAT_DEBUT :
-            gerer_evenements_begin()
-            
-        if etat_jeu == ETAT_CHOIX_DIFFICULTES :
-            gerer_evenements_choice()
-        if etat_jeu == ETAT_EN_COURS_EASY :
-            # Affichage joueur de la partie
-            going_boomV1.going_boom_facile()
-            pass
-        if etat_jeu == ETAT_EN_COURS_MEDIUM :
-            # Affichage joueur de la partie
-            pass
-        if etat_jeu == ETAT_EN_COURS_HARD :
-            # Affichage joueur de la partie
-            pass
-        if etat_jeu == ETAT_WIN :
-            gerer_evenements_win()
-        if etat_jeu == ETAT_GAME_OVER :
-            gerer_evenements_game_over()
-    
 # Partie affichage :
 
     fen.blit(fond, (0, 0))
     
     if etat_jeu == ETAT_DEBUT :
         afficher_elements_begin()
-    if etat_jeu == ETAT_CHOIX_DIFFICULTES :
+    elif etat_jeu == ETAT_CHOIX_DIFFICULTES :
         afficher_elements_choice()
-    if etat_jeu == ETAT_EN_COURS_EASY :
+    elif etat_jeu == ETAT_EN_COURS_EASY :
         # Affichage joueur de la partie
         pass
-    if etat_jeu == ETAT_EN_COURS_MEDIUM :
+    elif etat_jeu == ETAT_EN_COURS_MEDIUM :
         # Affichage joueur de la partie
         pass
-    if etat_jeu == ETAT_EN_COURS_HARD :
+    elif etat_jeu == ETAT_EN_COURS_HARD :
         # Affichage joueur de la partie
         pass
-    if etat_jeu == ETAT_WIN :
+    elif etat_jeu == ETAT_WIN :
         afficher_elements_win()
-    if etat_jeu == ETAT_GAME_OVER :
+    elif etat_jeu == ETAT_GAME_OVER :
         afficher_elements_game_over()
         
+    if etat_jeu == ETAT_DEBUT :
+        for event in pygame.event.get():
+            if event.type == pygame.MOUSEBUTTONUP:
+                if rect_orange.collidepoint(event.pos):
+                    etat_jeu = ETAT_CHOIX_DIFFICULTES
+                    print (etat_jeu)
+    elif etat_jeu == ETAT_CHOIX_DIFFICULTES :
+        for event in pygame.event.get():
+            if event.type == pygame.MOUSEBUTTONUP:
+                if rect_blue_choice.collidepoint(event.pos):
+                    etat_jeu = ETAT_EN_COURS_EASY
+                    print (etat_jeu)
+                if rect_orange_choice.collidepoint(event.pos):
+                    etat_jeu = ETAT_EN_COURS_MEDIUM
+                    print (etat_jeu)
+                if rect_red_choice.collidepoint(event.pos):
+                    etat_jeu = ETAT_EN_COURS_HARD
+                    print (etat_jeu)
+    elif etat_jeu == ETAT_EN_COURS_EASY :
+        # Affichage joueur de la partie
+        pass
+    elif etat_jeu == ETAT_EN_COURS_MEDIUM :
+        # Affichage joueur de la partie
+        pass
+    elif etat_jeu == ETAT_EN_COURS_HARD :
+        # Affichage joueur de la partie
+        pass
+    elif etat_jeu == ETAT_WIN :
+        for event in pygame.event.get():
+            if event.type == pygame.MOUSEBUTTONUP:
+                if rect_orange.collidepoint(event.pos):
+                    etat_jeu = ETAT_CHOIX_DIFFICULTES
+                    print (etat_jeu)
+    elif etat_jeu == ETAT_GAME_OVER :
+        for event in pygame.event.get():
+            if event.type == pygame.MOUSEBUTTONUP:
+                if rect_orange.collidepoint(event.pos):
+                    etat_jeu = ETAT_CHOIX_DIFFICULTES
+                    print (etat_jeu)
+           
     # Mettre à jour l'affichage    
     pygame.display.flip()
-
 
 pygame.quit()       
         
