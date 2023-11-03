@@ -93,7 +93,7 @@ reduced_explos_images = [pygame.transform.scale(image, (image.get_width() * 1.5,
 
 # Démarrer l'état du jeu
 # Super variable (début, choix_difficultes, en_cours, win, game_over) :
-etat_jeu = "debut"
+etat_jeu = "game_over"
 print (etat_jeu)
 continuer = True
 
@@ -223,7 +223,10 @@ while continuer:
                     print (etat_jeu)
     elif etat_jeu == "game_over" :
         for event in pygame.event.get():
-            if event.type == pygame.MOUSEBUTTONUP:
+            pygame.mixer.music.stop()
+            pygame.mixer.music.load("explosion.mp3")
+            pygame.mixer.music.play()
+            if event.type == pygame.MOUSEBUTTONUP:               
                 if rect_orange.collidepoint(event.pos):
                     pygame.mixer.music.stop()
                     pygame.mixer.music.load("transition-base.mp3")
