@@ -1,7 +1,8 @@
 # Fenêtre de jeu de Going bomb
-
 import pygame
-
+import game_mode_facile
+import game_mode_medium
+import game_mode_hard
 
 # Définition des couleurs et initialisation de Pygame
 COULEUR_FOND = (255, 255, 255)
@@ -25,10 +26,6 @@ HAUTEUR_REC_BEGIN_WIN_OVER = 50
 LARGEUR_REC_CHOICE = 300
 HAUTEUR_REC_CHOICE = 60
 
-"""
-pygame.mixer.music.load("punch-a-rock.mp3")
-
-"""
 
 # Textes pour les différentes difficultés
 police_choice = pygame.font.Font("police.ttf", 20)
@@ -84,16 +81,16 @@ game_over = pygame.image.load("game_over.png").convert()
 petit_game_over = pygame.transform.scale(game_over, (game_over.get_width() // 1.3, game_over.get_height() // 1.3))
 petit_game_over = petit_game_over.convert_alpha()
 
-"""
-Sprites pour l'affichage d'une explosion :
+
+"""Sprites pour l'affichage d'une explosion :
 explos_images = [pygame.image.load(f"explos_{i}.png").convert_alpha() for i in range(1, 10)]
-reduced_explos_images = [pygame.transform.scale(image, (image.get_width() * 1.5, image.get_height() * 1.5)) for image in
-                      explos_images]
-"""
+reduced_explos_images = [pygame.transform.scale(image, (image.get_width() * 1.5, image.get_height() * 1.5)) for image in [explos_images]"""
+
+
 
 # Démarrer l'état du jeu
 # Super variable (début, choix_difficultes, en_cours, win, game_over) :
-etat_jeu = "game_over"
+etat_jeu = "debut"
 print (etat_jeu)
 continuer = True
 
@@ -155,14 +152,24 @@ while continuer:
     elif etat_jeu == "choix_difficultes" :
         afficher_elements_choice()
     elif etat_jeu == "en_cours_easy" :
-        # Affichage joueur de la partie
-        pass
+        resultat = game_mode_facile.going_boom_facile()
+        if resultat == False:
+            etat_jeu = "game_over"
+        else:
+            etat_jeu = "win"
     elif etat_jeu == "en_cours_medium" :
-        # Affichage joueur de la partie
-        pass
+        resultat = game_mode_medium.going_boom_medium()
+        if resultat == False:
+            etat_jeu = "game_over"
+        else:
+            etat_jeu = "win"
     elif etat_jeu == "en_cours_hard" :
         # Affichage joueur de la partie
-        pass
+        resultat = game_mode_hard.going_boom_hard()
+        if resultat == False:
+            etat_jeu = "game_over"
+        else:
+            etat_jeu = "win"
     elif etat_jeu == "win" :
         afficher_elements_win()
     elif etat_jeu == "game_over" :
@@ -184,24 +191,24 @@ while continuer:
             if event.type == pygame.MOUSEBUTTONUP:
                 if rect_blue_choice.collidepoint(event.pos):
                     pygame.mixer.music.stop()
-                    pygame.mixer.music.load("bicycle-bell.mp3")
+                    pygame.mixer.music.load("punch-a-rock.mp3")
                     pygame.mixer.music.play()
                     etat_jeu = "en_cours_easy"
                     print (etat_jeu)
-                if rect_orange_choice.collidepoint(event.pos):
+                elif rect_orange_choice.collidepoint(event.pos):
                     pygame.mixer.music.stop()
-                    pygame.mixer.music.load("bicycle-bell.mp3")
+                    pygame.mixer.music.load("punch-a-rock.mp3")
                     pygame.mixer.music.play()
                     etat_jeu = "en_cours_medium"
                     print (etat_jeu)
-                if rect_red_choice.collidepoint(event.pos):
+                elif rect_red_choice.collidepoint(event.pos):
                     pygame.mixer.music.stop()
-                    pygame.mixer.music.load("bicycle-bell.mp3")
+                    pygame.mixer.music.load("punch-a-rock.mp3")
                     pygame.mixer.music.play()
                     etat_jeu = "en_cours_hard"
-                    print (etat_jeu)                 
-    """
-    Cas où il y aurait des fonctions pour l'affichage de ces modes :
+                    print (etat_jeu)                            
+
+    """Cas où il y aurait des fonctions pour l'affichage de ces modes :
     elif etat_jeu == "en_cours_easy" :
         # Affichage joueur de la partie
         pass
@@ -210,8 +217,8 @@ while continuer:
         pass
     elif etat_jeu == "en_cours_hard" :
         # Affichage joueur de la partie
-        pass
-    """
+        pass"""
+
     if etat_jeu == "win" :
         for event in pygame.event.get():
             if event.type == pygame.MOUSEBUTTONUP:
