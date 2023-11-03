@@ -1,9 +1,5 @@
 import pygame
 def going_boom_facile():    # Couleurs qui seront utilisées dans le jeu
-    VERT = (0, 153, 51)
-    ORANGE = (255, 255, 255)
-    VERTB = (0, 204, 0)
-    VIOLET = (102, 0, 102)
     WHITE = (255, 255, 255)
     COULEUR_COMPTEUR = (53, 200, 23)
     COULEUR_FOND = (255, 255, 255)
@@ -63,7 +59,6 @@ def going_boom_facile():    # Couleurs qui seront utilisées dans le jeu
 
     question_index = 0
     reponse = ""
-
     # Nos questions
     questions = [
         "Quelle est la capitale de la France ?",
@@ -77,7 +72,7 @@ def going_boom_facile():    # Couleurs qui seront utilisées dans le jeu
         "Quel est l'inventeur de l'ampoule electrique ?",
         "Qui est l'auteur de la peinture La Nuit etoilee ?",
         "Combien de cotes a un triangle ?",
-        "Quelle est la plus grande planète du systeme solaire ?",
+        "Quelle est la plus grande planete du systeme solaire ?",
         "Quel est le nom de l'inventeur du telephone ?"
     ]
     # Nos réponses
@@ -89,7 +84,6 @@ def going_boom_facile():    # Couleurs qui seront utilisées dans le jeu
     texte_question = font.render(questions[question_index], True, (255, 11, 11))
     # Définition de la position du rectangle dans lequel la question apparaîtra
     rect_question = texte_question.get_rect(center=(LARGEUR //2, 320))
-    verdict = font.render(etat_reponse, True, (0, 255, 0))
 
     message_feedback = ""  # Initialisez un message de feedback vide
     message_duration = 60  # Durée en nombre de frames (environ 1 seconde à 60 FPS)
@@ -116,12 +110,13 @@ def going_boom_facile():    # Couleurs qui seront utilisées dans le jeu
                         texte_question = font.render(questions[question_index], True, (255, 11, 11))
                     else:
                         print("Toutes les questions sont terminées.")
+                        victoire = True
                         continuer = False
                 elif event.unicode != '':
                     reponse += event.unicode
 
         if timer <= 0:
-            fen.blit(explosion, (0, 0))
+            victoire = False
             continuer = False
 
         fen.blit(fondjeu, (0, 0))
@@ -161,4 +156,4 @@ def going_boom_facile():    # Couleurs qui seront utilisées dans le jeu
 
         horloge.tick(FPS)
 
-    pygame.quit()
+    return 

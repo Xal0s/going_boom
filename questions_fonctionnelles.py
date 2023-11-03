@@ -33,9 +33,9 @@ message_reponse = ""
 #choix de la taille de caractère et la font du texte ecrit dans l'interface
 font = pygame.font.Font(None, 36)
 #variable pour que la question s'affiche dans l'interface
-texte_question = font.render(questions[question_index], True, (0, 0, 0))
+texte_question = font.render(questions[question_index], True, (255, 0, 0))
 #definition de la position du rectangle dans lequel la question apparaitra
-rect_question = texte_question.get_rect(center=(largeur // 2, hauteur // 2 - 30))  
+rect_question = texte_question.get_rect(center = (500, hauteur - 150))  
 
 #on entre dans la boucle while infini
 while continuer:
